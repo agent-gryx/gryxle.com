@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gryxle — AI Revenue Operations</title>
-  <meta name="description" content="We build AI systems that run your revenue operations. Less manual work. More revenue.">
+  <meta name="description" content="We map your revenue operations, find where manual work is killing time, and build AI systems to fix it. Audit in 2 weeks, $5K flat.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -96,6 +96,17 @@
       line-height: 1.7;
       margin-bottom: 36px;
       max-width: 520px;
+    }
+
+    .hero-stat {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500;
+      color: var(--accent);
+      background: rgba(91,143,255,0.06);
+      border: 1px solid rgba(91,143,255,0.15);
+      padding: 8px 14px; border-radius: 8px;
+      margin-bottom: 32px;
+      width: fit-content;
     }
 
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -221,33 +232,67 @@
 
     .reason p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
-    /* ── CTA SECTION ── */
-    .cta-section {
+    /* ── CONTACT FORM ── */
+    .form-section {
       padding: 80px 24px;
       max-width: 680px;
       margin: 0 auto;
-      text-align: center;
     }
 
-    .cta-section h2 { margin-bottom: 12px; }
-
-    .cta-section p {
-      font-size: 15px; color: var(--muted);
-      margin-bottom: 32px;
-      line-height: 1.7;
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 32px;
     }
 
-    .cta-email {
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--text);
+      font-family: inherit;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: var(--muted); }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus { border-color: var(--accent); }
+
+    .contact-form select { color: var(--muted); appearance: none; cursor: pointer; }
+    .contact-form select option { background: var(--surface); color: var(--text); }
+
+    .contact-form textarea { min-height: 120px; resize: vertical; }
+
+    .form-submit {
       display: inline-block;
-      font-size: 16px; font-weight: 600;
+      font-size: 15px; font-weight: 600;
       color: var(--white);
       background: var(--accent);
-      padding: 16px 32px;
-      border-radius: 12px;
-      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
       transition: opacity 0.15s;
+      width: fit-content;
     }
-    .cta-email:hover { opacity: 0.85; }
+    .form-submit:hover { opacity: 0.85; }
 
     /* ── FOOTER ── */
     footer {
@@ -270,11 +315,11 @@
     @media (max-width: 480px) {
       nav { padding: 16px 20px; }
       .hero { padding: 90px 20px 50px; }
-      section { padding: 60px 20px; }
-      .cta-section { padding: 60px 20px; }
+      section, .form-section { padding: 60px 20px; }
       footer { padding: 28px 20px; }
       .hero-actions { flex-direction: column; }
       .btn-primary, .btn-ghost { text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -283,18 +328,21 @@
   <!-- NAV -->
   <nav>
     <a href="/" class="logo">Gryxle</a>
-    <a href="mailto:hello@gryxle.com" class="nav-cta">Get in touch</a>
+    <a href="#contact" class="nav-cta">Get in touch</a>
   </nav>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-tag">AI Revenue Operations</div>
-    <h1>Your revenue ops,<br><span>running itself.</span></h1>
+    <div class="hero-tag">For B2B SaaS teams, Series A–B</div>
+    <h1>Your revenue team<br>closes more,<br><span>manually does less.</span></h1>
     <p class="hero-sub">
-      We build AI systems that handle the manual work in your revenue operations — enrichment, pipeline hygiene, follow-up, reporting. Less noise. More signal.
+      We map every manual step in your RevOps workflow, find what's costing you time and pipeline, and build AI systems to fix it.
     </p>
+    <div class="hero-stat">
+      📉 22 hours/rep/month in manual work → 3 hours. We did it for ourselves first.
+    </div>
     <div class="hero-actions">
-      <a href="mailto:hello@gryxle.com" class="btn-primary">Start with an audit</a>
+      <a href="#contact" class="btn-primary">Start with an audit — $5K flat</a>
       <a href="#how" class="btn-ghost">See how it works</a>
     </div>
   </div>
@@ -311,16 +359,16 @@
       <div class="step">
         <div class="step-num">1</div>
         <div>
-          <h3>Revenue Audit</h3>
-          <p>We map your RevOps workflow end to end, find where manual work is killing time and accuracy, and deliver a concrete roadmap — with real numbers attached to each automation opportunity. If nothing's worth building, we'll tell you that too.</p>
-          <span class="step-price">$5K flat · 2 weeks</span>
+          <h3>AI Revenue Audit</h3>
+          <p>We map your RevOps workflow end to end — every manual step, who owns it, how long it takes. We score each one by ROI potential and build complexity, then deliver a prioritized roadmap with real numbers attached. If nothing's worth building, we'll tell you that and you keep the roadmap.</p>
+          <span class="step-price">$5K flat · 2 weeks · clear deliverable</span>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div>
           <h3>AI Workflow Build</h3>
-          <p>We build the automations from the audit. Lead enrichment, CRM hygiene, follow-up sequences, pipeline monitoring — running automatically so your team can focus on the work that actually needs a human.</p>
+          <p>We build the automations from the audit. Lead enrichment, CRM hygiene, follow-up sequences, pipeline reporting — running automatically so your team focuses on work that actually needs a human.</p>
           <span class="step-price">$15K–$35K · scoped to your stack</span>
         </div>
       </div>
@@ -346,26 +394,48 @@
     <div class="reasons">
       <div class="reason">
         <h3>Proof of concept, not a prototype</h3>
-        <p>We run our own revenue operations on the same AI infrastructure we build for clients. When we say it works, we mean it works for us first.</p>
+        <p>We cut our own manual RevOps hours from 22 to 3 per rep per month using the same infrastructure we build for clients. When we say it works, we mean it works for us first.</p>
       </div>
       <div class="reason">
         <h3>No commitment after the audit</h3>
-        <p>The audit stands on its own. You leave with a real roadmap and real numbers. Build with us or don't — either way, you know exactly what you're dealing with.</p>
+        <p>The audit stands on its own. You leave with a real roadmap and real ROI numbers. Build with us or don't — either way, you know exactly what you're dealing with.</p>
       </div>
       <div class="reason">
         <h3>Built for growth-stage teams</h3>
-        <p>Series A and B teams are where RevOps infrastructure either gets built right or becomes the problem at Series C. That's the window we work in.</p>
+        <p>Series A and B is where RevOps infrastructure either gets built right or becomes the problem at Series C. That's the window we work in.</p>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- CTA -->
-  <div class="cta-section">
-    <h2>Start with a conversation.</h2>
-    <p>Tell us what you're working with. We'll tell you honestly whether there's something worth building — and what it would return.</p>
-    <a href="mailto:hello@gryxle.com" class="cta-email">hello@gryxle.com</a>
+  <!-- CONTACT FORM -->
+  <div class="form-section" id="contact">
+    <div class="section-label">Get in touch</div>
+    <h2>Tell us what you're<br>working with.</h2>
+    <p class="section-sub">We'll tell you honestly whether there's something worth building — and what it would return. No pitch, just a real conversation.</p>
+
+    <form class="contact-form" action="https://formspree.io/f/hello@gryxle.com" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="company" placeholder="Company" required>
+      </div>
+      <div class="form-row">
+        <input type="text" name="role" placeholder="Your role (e.g. VP RevOps)" required>
+        <input type="email" name="email" placeholder="Work email" required>
+      </div>
+      <select name="crm">
+        <option value="" disabled selected>What CRM are you using?</option>
+        <option value="hubspot">HubSpot</option>
+        <option value="salesforce">Salesforce</option>
+        <option value="attio">Attio</option>
+        <option value="other">Other / Custom</option>
+        <option value="none">No CRM yet</option>
+      </select>
+      <textarea name="message" placeholder="What's the biggest manual pain in your current RevOps workflow?" required></textarea>
+      <input type="hidden" name="_subject" value="New Gryxle inbound — website contact form">
+      <button type="submit" class="form-submit">Send — we reply within 24 hours</button>
+    </form>
   </div>
 
   <!-- FOOTER -->
@@ -376,4 +446,3 @@
 
 </body>
 </html>
-
