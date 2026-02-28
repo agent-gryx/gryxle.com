@@ -415,7 +415,7 @@
     <h2>Tell us what you're<br>working with.</h2>
     <p class="section-sub">We'll tell you honestly whether there's something worth building — and what it would return. No pitch, just a real conversation.</p>
 
-    <form class="contact-form" action="https://formspree.io/f/hello@gryxle.com" method="POST">
+    <form class="contact-form" id="contact-form" onsubmit="handleSubmit(event)">
       <div class="form-row">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="text" name="company" placeholder="Company" required>
@@ -435,6 +435,7 @@
       <textarea name="message" placeholder="What's the biggest manual pain in your current RevOps workflow?" required></textarea>
       <input type="hidden" name="_subject" value="New Gryxle inbound — website contact form">
       <button type="submit" class="form-submit">Send — we reply within 24 hours</button>
+    <p id="form-status" style="display:none;margin-top:12px;font-size:14px;color:#5b8fff;"></p>
     </form>
   </div>
 
@@ -444,5 +445,24 @@
     <a href="mailto:hello@gryxle.com">hello@gryxle.com</a>
   </footer>
 
+  <script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const f = e.target;
+    const name = f.name.value;
+    const company = f.company.value;
+    const role = f.role.value;
+    const email = f.email.value;
+    const crm = f.crm.value;
+    const message = f.message.value;
+    const body = `Name: ${name}%0ACompany: ${company}%0ARole: ${role}%0AEmail: ${email}%0ACRM: ${crm}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+    const subject = encodeURIComponent(`Gryxle Inquiry — ${name} at ${company}`);
+    window.location.href = `mailto:hello@gryxle.com?subject=${subject}&body=${body}`;
+    const status = document.getElementById('form-status');
+    status.style.display = 'block';
+    status.textContent = 'Opening your email client — just hit send. We reply within 24 hours.';
+  }
+  </script>
 </body>
 </html>
+
